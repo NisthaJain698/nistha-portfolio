@@ -325,6 +325,8 @@ function ExperienceRow({
 
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const scrollToSection = (id: string) => {
   const section = document.getElementById(id);
 
@@ -348,7 +350,55 @@ export default function Home() {
         className="relative min-h-screen bg-[#F5F2EA] overflow-hidden"
       >
 
-{/* Mobile menu removed */}
+{/* ================= MOBILE MENU ================= */}
+{isMenuOpen && (
+  <div
+    className="
+      fixed
+      top-20
+      left-0
+      right-0
+      z-40
+      md:hidden
+      border-t
+      border-[#D6D3C8]
+      bg-[#F5F2EA]
+      px-5
+      py-6
+      shadow-[0_18px_35px_rgba(36,36,33,0.08)]
+    "
+  >
+    <div className="flex flex-col gap-5">
+      {[
+        ["Home", "#home"],
+        ["About", "#about"],
+        ["Work", "#projects"],
+        ["Skills", "#skills"],
+        ["Achievements", "#achievements"],
+        ["Experience", "#experience"],
+        ["Contact", "#contact"],
+      ].map(([label, href]) => (
+        <a
+          key={label}
+          href={href}
+          onClick={() => setIsMenuOpen(false)}
+          className="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.15em]
+            text-[#242421]
+            transition-colors
+            duration-300
+            hover:text-[#7A8065]
+          "
+        >
+          {label}
+        </a>
+      ))}
+    </div>
+  </div>
+)}
 
 {/* ==================== NAVBAR ==================== */}
 
@@ -819,33 +869,61 @@ export default function Home() {
     </motion.div>
 
 
-{/* ================= MOBILE RESUME BUTTON ================= */}
-<a
-  href="Nistha_Resume.docx"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="
-    flex
-    md:hidden
-    items-center
-    justify-center
-    border
-    border-[#8B9270]
-    px-3
-    py-2
-    text-[10px]
-    font-bold
-    uppercase
-    tracking-[0.15em]
-    text-[#242421]
-    transition-all
-    duration-300
-    hover:bg-[#8B9270]
-    hover:text-[#F5F2EA]
-  "
->
-  Resume ↗
-</a>
+{/* ================= MOBILE CONTROLS (RESUME + MENU) ================= */}
+<div className="flex md:hidden items-center gap-3">
+  {/* MOBILE RESUME BUTTON */}
+  <a
+    href="Nistha_Resume.docx"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="
+      flex
+      items-center
+      justify-center
+      border
+      border-[#8B9270]
+      px-3
+      py-2
+      text-[10px]
+      font-bold
+      uppercase
+      tracking-[0.15em]
+      text-[#242421]
+      transition-all
+      duration-300
+      hover:bg-[#8B9270]
+      hover:text-[#F5F2EA]
+    "
+  >
+    Resume ↗
+  </a>
+
+  {/* MOBILE MENU BUTTON */}
+  <button
+    type="button"
+    onClick={() => setIsMenuOpen(!isMenuOpen)}
+    className="
+      flex
+      items-center
+      justify-center
+      border
+      border-[#CFCBC0]
+      px-3
+      py-2
+      text-[10px]
+      font-bold
+      uppercase
+      tracking-[0.15em]
+      text-[#242421]
+      transition-all
+      duration-300
+      hover:border-[#7A8065]
+      hover:text-[#7A8065]
+    "
+  >
+    {isMenuOpen ? "Close" : "Menu"}
+  </button>
+</div>
   </div>
   </nav>
 
@@ -934,7 +1012,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.7 }}
-className="absolute top-[10%] text-center font-serif italic text-[clamp(2.3rem,5vw,5rem)] text-[#171717] font-extrabold"          >
+className="absolute top-[12%] text-center font-serif italic text-[clamp(2.3rem,5vw,5rem)] text-[#171717] font-extrabold"          >
             Hey, there.
           </motion.p>
 
