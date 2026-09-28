@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 
@@ -324,6 +325,8 @@ function ExperienceRow({
 
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const scrollToSection = (id: string) => {
   const section = document.getElementById(id);
 
@@ -346,6 +349,41 @@ export default function Home() {
         id="home"
         className="relative min-h-screen bg-[#F5F2EA] overflow-hidden"
       >
+
+        {/* ================= MOBILE MENU ================= */}
+{isMenuOpen && (
+  <div className="md:hidden border-t border-[#D6D3C8] bg-[#F5F2EA] px-5 py-5">
+    <div className="flex flex-col gap-4">
+      {[
+        ["Home", "#home"],
+        ["About", "#about"],
+        ["Work", "#projects"],
+        ["Skills", "#skills"],
+        ["Achievements", "#achievements"],
+        ["Experience", "#experience"],
+        ["Contact", "#contact"],
+      ].map(([label, href]) => (
+        <a
+          key={label}
+          href={href}
+          onClick={() => setIsMenuOpen(false)}
+          className="
+            text-sm
+            font-bold
+            uppercase
+            tracking-[0.15em]
+            text-[#242421]
+            transition-colors
+            duration-300
+            hover:text-[#7A8065]
+          "
+        >
+          {label}
+        </a>
+      ))}
+    </div>
+  </div>
+)}
 
 {/* ==================== NAVBAR ==================== */}
 
@@ -816,31 +854,32 @@ export default function Home() {
     </motion.div>
 
 
-    {/* ================= MOBILE MENU BUTTON ================= */}
-    <button
-      type="button"
-      className="
-        flex
-        md:hidden
-        items-center
-        justify-center
-        border
-        border-[#CFCBC0]
-        px-3
-        py-2
-        text-[10px]
-        font-bold
-        uppercase
-        tracking-[0.15em]
-        text-[#242421]
-        transition-all
-        duration-300
-        hover:border-[#7A8065]
-        hover:text-[#7A8065]
-      "
-    >
-      Menu
-    </button>
+{/* ================= MOBILE MENU BUTTON ================= */}
+<button
+  type="button"
+  onClick={() => setIsMenuOpen(!isMenuOpen)}
+  className="
+    flex
+    md:hidden
+    items-center
+    justify-center
+    border
+    border-[#CFCBC0]
+    px-3
+    py-2
+    text-[10px]
+    font-bold
+    uppercase
+    tracking-[0.15em]
+    text-[#242421]
+    transition-all
+    duration-300
+    hover:border-[#7A8065]
+    hover:text-[#7A8065]
+  "
+>
+  {isMenuOpen ? "Close" : "Menu"}
+</button>
   </div>
   </nav>
 
@@ -2646,9 +2685,9 @@ export default function Home() {
 
         {/* BIG HEADING */}
 
-        <div className="overflow-hidden">
-          <motion.h2
-            initial={{ opacity: 0, y: 120 }}
+<div className="overflow-visible">
+            <motion.h2
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{
