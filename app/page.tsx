@@ -325,8 +325,6 @@ function ExperienceRow({
 
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const scrollToSection = (id: string) => {
   const section = document.getElementById(id);
 
@@ -350,55 +348,7 @@ export default function Home() {
         className="relative min-h-screen bg-[#F5F2EA] overflow-hidden"
       >
 
-{/* ================= MOBILE MENU ================= */}
-{isMenuOpen && (
-  <div
-    className="
-      fixed
-      top-20
-      left-0
-      right-0
-      z-40
-      md:hidden
-      border-t
-      border-[#D6D3C8]
-      bg-[#F5F2EA]
-      px-5
-      py-6
-      shadow-[0_18px_35px_rgba(36,36,33,0.08)]
-    "
-  >
-    <div className="flex flex-col gap-5">
-      {[
-        ["Home", "#home"],
-        ["About", "#about"],
-        ["Work", "#projects"],
-        ["Skills", "#skills"],
-        ["Achievements", "#achievements"],
-        ["Experience", "#experience"],
-        ["Contact", "#contact"],
-      ].map(([label, href]) => (
-        <a
-          key={label}
-          href={href}
-          onClick={() => setIsMenuOpen(false)}
-          className="
-            text-sm
-            font-bold
-            uppercase
-            tracking-[0.15em]
-            text-[#242421]
-            transition-colors
-            duration-300
-            hover:text-[#7A8065]
-          "
-        >
-          {label}
-        </a>
-      ))}
-    </div>
-  </div>
-)}
+{/* Mobile menu removed */}
 
 {/* ==================== NAVBAR ==================== */}
 
@@ -869,17 +819,18 @@ export default function Home() {
     </motion.div>
 
 
-{/* ================= MOBILE MENU BUTTON ================= */}
-<button
-  type="button"
-  onClick={() => setIsMenuOpen(!isMenuOpen)}
+{/* ================= MOBILE RESUME BUTTON ================= */}
+<a
+  href="Nistha_Resume.docx"
+  target="_blank"
+  rel="noopener noreferrer"
   className="
     flex
     md:hidden
     items-center
     justify-center
     border
-    border-[#CFCBC0]
+    border-[#8B9270]
     px-3
     py-2
     text-[10px]
@@ -889,12 +840,12 @@ export default function Home() {
     text-[#242421]
     transition-all
     duration-300
-    hover:border-[#7A8065]
-    hover:text-[#7A8065]
+    hover:bg-[#8B9270]
+    hover:text-[#F5F2EA]
   "
 >
-  {isMenuOpen ? "Close" : "Menu"}
-</button>
+  Resume ↗
+</a>
   </div>
   </nav>
 
