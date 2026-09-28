@@ -350,10 +350,25 @@ export default function Home() {
         className="relative min-h-screen bg-[#F5F2EA] overflow-hidden"
       >
 
-        {/* ================= MOBILE MENU ================= */}
+{/* ================= MOBILE MENU ================= */}
 {isMenuOpen && (
-  <div className="md:hidden border-t border-[#D6D3C8] bg-[#F5F2EA] px-5 py-5">
-    <div className="flex flex-col gap-4">
+  <div
+    className="
+      fixed
+      top-20
+      left-0
+      right-0
+      z-40
+      md:hidden
+      border-t
+      border-[#D6D3C8]
+      bg-[#F5F2EA]
+      px-5
+      py-6
+      shadow-[0_18px_35px_rgba(36,36,33,0.08)]
+    "
+  >
+    <div className="flex flex-col gap-5">
       {[
         ["Home", "#home"],
         ["About", "#about"],
@@ -968,8 +983,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.7 }}
-            className="absolute top-[17%] text-center font-serif italic text-[clamp(2.3rem,5vw,5rem)] text-[#171717] font-extrabold"
-          >
+className="absolute top-[10%] text-center font-serif italic text-[clamp(2.3rem,5vw,5rem)] text-[#171717] font-extrabold"          >
             Hey, there.
           </motion.p>
 
